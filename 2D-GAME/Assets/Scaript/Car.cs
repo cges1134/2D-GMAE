@@ -2,6 +2,7 @@
 
 public class Car : MonoBehaviour
 {
+    #region 練習語法
     // 單行註解：紀錄、說明、開發者名稱..
 
     // 資料 = C# 欄位 (Field)
@@ -13,10 +14,11 @@ public class Car : MonoBehaviour
     //修飾詞-定義資料的權限
     //私人 private (預設值)  -不顯示在屬性面板
     //公開 public            -顯示在屬性面板
-    [Header ("這是汽車的屬性面板") ]
+    [Header("這是汽車的屬性面板")]
     [Tooltip("這是汽車的CC數")]
+    [Range(1000, 2000)]
     public int cc = 2000;
-    [Tooltip ("這是汽車的重量")]
+    [Tooltip("這是汽車的重量")]
     public float weight = 1500.5f;  //小數點號面要加f或F 
     [Tooltip("這是汽車的品牌")]
     public string brand = "BMW";           //文字必須加雙引號
@@ -42,6 +44,49 @@ public class Car : MonoBehaviour
     public GameObject obj;                  //可以存放白線物件與預製物
     public Transform tra;
     public SpriteRenderer sr;
+    #endregion
+    #region 事件
+    // 事件：開始 - 播放遊戲時執行一次
+    private void Start()
+    {
+        // 事件：開始 - 播放遊戲時執行一次
+        print("Hi~你在嗎?");
 
+        Shoot(1, 500);
+        Shoot(2, 600);
+        Shoot(3);
+        
+    }
+    //事件:持續內容 比如-鍵盤、滑鼠 一秒大約更新60FPS
+    private void Update()
+    {
+        print("在開車");
+        Drive(0.01f);
+    }
+    //方法 
+    //語法
+    //定義程式區塊的語法
+    //修飾詞 傳回類型 名稱 (參數) [程式]
+    //參數語法:(參數類型+空白鍵+參數名稱())
+    // ※ 有預設值的參數要放在最右邊
+    //無傳回 void 僅會傳出語法
+    //方法需要被呼叫才會回應
+    private void Drive(float 速度)
+    {
+        print("別吵我");
+        transform.Translate(速度, 0, 0);
+    }
+    //摘要不是必要但很重要
+    /// <summary>
+    /// 發射弓箭的功能
+    /// </summary>
+    /// <param name="count">弓箭數量</param>
+    /// <param name="speed">弓箭速度預設為300</param>
+    private void Shoot(int count, int speed = 300)
+    {
+        print("弓箭數量：" + count);
+        print("弓箭速度：" + speed);
+    }
+    }
 
-        }
+#endregion}
